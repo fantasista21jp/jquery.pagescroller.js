@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>jquery.pagescroller</title>
+<meta content="Description" name="description" />
+<meta content="Keyword1,Keyword2,Keyword3" name="keywords" />
+<meta content="text/javascript" http-equiv="content-script-type" />
+<meta content="text/css" http-equiv="content-style-type" />
+<meta content="no-cache" http-equiv="cache-control" />
+<meta content="no-cache" http-equiv="pragma" />
+<meta content="auther" name="author" />
+<meta content="accont@domain.com" name="reply-to" />
+<meta content="© Copyright" name="copyright" />
+<meta content="noindex,nofollow" name="robots" />
+<link href="mailto:author@domain.com" rev="made" />
+<link href="/" rel="start" />
+<link media="screen,print" href="./css/local.css" type="text/css" rel="stylesheet" />
+<script src="./js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<!-- <script src="./js/jquery-1.4.4.min.js" type="text/javascript"></script> -->
+<!-- jquery.pagescroller -->
+<script src="./js/jquery.pagescroller.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(function(){
+    $.pagescroller.init({
+      margin_top: 10,
+      margin_left: 10
+    });
+    $('a.jquery-pagescroller-action').click(function(){
+      $.pagescroller.go(
+        '#jquery-pagescroller-1',
+        {
+          margin_top: 20,
+          margin_left: 20
+        },
+        function(){
+          alert('action');
+        }
+      );
+    });
+  });
+</script>
+<!-- // jquery.pagescroller -->
+</head>
+<body>
+
+<ul>
+  <li><a href="#jquery-pagescroller-0">box 0</a></li>
+  <li><a href="#jquery-pagescroller-1">box 1</a></li>
+  <li><a href="#jquery-pagescroller-2">box 2</a></li>
+  <li><a href="javascript:void(0);" class="jquery-pagescroller-action">move to action</a></li>
+</ul>
+
+<hr />
+
+<div id="jquery-pagescroller">
+  <div id="jquery-pagescroller-0">
+    <p>box0</p>
+  </div>
+
+  <hr />
+
+  <div id="jquery-pagescroller-1">
+    <p>box1</p>
+  </div>
+
+  <hr />
+
+  <div id="jquery-pagescroller-2">
+    <p>box2</p>
+  </div>
+</div>
+
+<hr />
+
+<ul>
+  <li><a href="#jquery-pagescroller-0">box 0</a></li>
+  <li><a href="#jquery-pagescroller-1">box 1</a></li>
+  <li><a href="#jquery-pagescroller-2">box 2</a></li>
+  <li><a href="javascript:void(0);" class="jquery-pagescroller-action">move to action</a></li>
+</ul>
+
+<hr />
+
+<p><a href="#">ページトップへ</p>
+
+</body>
+</html>
