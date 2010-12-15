@@ -19,10 +19,7 @@
     },
     is_msie6: (!$.support.style && typeof document.documentElement.style.maxHeight === 'undefined'),
     is_webkit: ($.support.checkOn !== undefined ? !$.support.checkOn : $.browser.safari),
-    uri: (location.protocol + '//' + location.hostname + '/' + (location.pathname).replace(/^\//, '') + location.search).toLowerCase(),
-
-    test: function() {
-    }
+    uri: (location.protocol + '//' + location.hostname + '/' + (location.pathname).replace(/^\//, '') + location.search).toLowerCase()
   };
 
   $.pagescroller.init = function(configs) {
