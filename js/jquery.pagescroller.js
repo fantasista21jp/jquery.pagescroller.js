@@ -18,7 +18,7 @@
       speed: 0.8
     },
     is_msie6: (!$.support.style && typeof document.documentElement.style.maxHeight === 'undefined'),
-    is_webkit: ($.support.checkOn !== undefined ? !$.support.checkOn : $.browser.safari),
+    is_webkit: !document.uniqueID && !window.opera && !window.globalStorage && window.localStorage,
     uri: (location.protocol + '//' + location.hostname + '/' + (location.pathname).replace(/^\//, '') + location.search).toLowerCase()
   };
 
