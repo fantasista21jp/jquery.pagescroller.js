@@ -19,6 +19,7 @@
     },
     is_msie6: (!$.support.style && typeof document.documentElement.style.maxHeight === 'undefined'),
     is_webkit: !document.uniqueID && !window.opera && !window.sidebar && window.localStorage && typeof window.orientation == "undefined",
+    is_sp: (navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0,
     uri: (location.protocol + '//' + location.hostname + '/' + (location.pathname).replace(/^\//, '') + location.search).toLowerCase()
   };
 
@@ -74,14 +75,21 @@
       if (left > max_left) left = max_left;
     }
 
-    var $scroll = $(!this.is_webkit ? 'html' : 'body'),
-        distance = Math.ceil(Math.sqrt(Math.pow(Math.abs($scroll.scrollTop() - top), 2) + Math.pow(Math.abs($scroll.scrollLeft() - left), 2)));
+    var $scroll = $((this.is_webkit || this.is_sp) ? 'body' : 'html'),
+        distance = Math.ceil(Math.sqrt(Math.pow(Math.abs($scroll.scrollTop() - top), 2) + Math.pow(Math.abs($scroll.scrollLeft() - left), 2))),
+        params = {
+            scrollTop: top,
+            scrollLeft: left
+        };
+
+    if (this.is_sp) {
+        params = {
+            scrollTop: top
+        };
+    }
 
     $scroll.animate(
-      {
-        scrollTop: top,
-        scrollLeft: left
-      },
+      params,
       Math.ceil(distance * configs.speed),
       configs.easing,
       function() {
@@ -90,3 +98,4 @@
     );
   };
 })(jQuery);
+
