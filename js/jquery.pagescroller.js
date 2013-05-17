@@ -78,8 +78,8 @@
     var $scroll = $((this.is_webkit || this.is_sp) ? 'body' : 'html'),
         distance = Math.ceil(Math.sqrt(Math.pow(Math.abs($scroll.scrollTop() - top), 2) + Math.pow(Math.abs($scroll.scrollLeft() - left), 2))),
         params = {
-            scrollTop: top,
-            scrollLeft: left
+            scrollLeft: left,
+            scrollTop: top
         };
 
     if (this.is_sp) {
