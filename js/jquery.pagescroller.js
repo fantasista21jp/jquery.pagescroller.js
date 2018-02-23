@@ -26,9 +26,9 @@
   $.pagescroller.init = function(configs) {
     configs = $.extend(this.defaults, configs);
 
-    var anchorPattern = 'a[href*=#]';
+    var anchorPattern = 'a[href*="#"]';
     if (configs.anchor_top !== null) {
-      anchorPattern += ':not([href$=#])';
+      anchorPattern += ':not([href$="#"])';
     }
     $(anchorPattern, configs.selector).each(function() {
       var target_uri = (this.protocol + '//' + this.hostname + '/' + (this.pathname).replace(/^\//, '') + this.search).toLowerCase();
@@ -42,6 +42,16 @@
         });
       }
     });
+  };
+
+  $.pagescroller.getScrollDom = function () {
+    if ('scrollingElement' in document) {
+      return $(document.scrollingElement.tagName);
+    }
+    if (navigator.userAgent.indexOf('WebKit') !== -1) {
+      return $('body');
+    }
+    return $('html');
   };
 
   $.pagescroller.go = function(anchor, configs, afterFunc) {
@@ -75,7 +85,7 @@
       if (left > max_left) left = max_left;
     }
 
-    var $scroll = $((this.is_webkit || this.is_sp) ? 'body' : 'html'),
+    var $scroll = $scroll = this.getScrollDom(),
         distance = Math.ceil(Math.sqrt(Math.pow(Math.abs($scroll.scrollTop() - top), 2) + Math.pow(Math.abs($scroll.scrollLeft() - left), 2))),
         params = {
             scrollLeft: left,
